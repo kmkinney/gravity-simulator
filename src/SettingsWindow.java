@@ -13,8 +13,10 @@ import java.util.*;
  */
 public class SettingsWindow extends JFrame implements ItemListener, ActionListener, ChangeListener
 {
-	public static final int WIDTH = 300;
-	public static final int HEIGHT = 300;
+	public static final int BASE_WIDTH = 300;
+	public static final int BASE_HEIGHT = 300;
+	public static final int WIDTH = (int)(BASE_WIDTH * GravitySim.SCALE);
+	public static final int HEIGHT = (int)(BASE_HEIGHT * GravitySim.SCALE);
 	
 	private GravityComp sim;
 	private JCheckBox sunFixBox, showTrailsBox, showVelBox, showAccBox;
@@ -33,11 +35,14 @@ public class SettingsWindow extends JFrame implements ItemListener, ActionListen
 		setTitle("Settings");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new GridLayout(5, 1));
+
+		LinkedList<JLabel> labels = new LinkedList<>();
 		
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new GridLayout(1, 3));
 		titlePanel.add(new JLabel());
-		titlePanel.add(new JLabel("Settings"));
+		labels.add(new JLabel("Settings"));
+		titlePanel.add(labels.peekLast());
 		titlePanel.add(new JLabel());
 		add(titlePanel);
 		
@@ -68,12 +73,12 @@ public class SettingsWindow extends JFrame implements ItemListener, ActionListen
 		add(checkBoxes);
 		
 		for(JCheckBox b:boxes){
-			//b.setForeground(Color.white); text color
+			b.setFont(GravitySim.DIALOG_FONT);
 		}
 		
 		
-		
-		add(new JLabel("Set Speed", JLabel.CENTER));
+		labels.add(new JLabel("Set Speed", JLabel.CENTER));
+		add(labels.peekLast());
 		
 		speedSlider = new JSlider(JSlider.HORIZONTAL, 5, BodyRunner.MAX_SPEED, (int)(sim.getSpeed()));
 		speedSlider.setMajorTickSpacing(5);
@@ -88,12 +93,17 @@ public class SettingsWindow extends JFrame implements ItemListener, ActionListen
 		savePanel.add(new JLabel());
 		save = new JButton("Save");
 		save.addActionListener(this);
+		save.setFont(GravitySim.DIALOG_FONT);
 		savePanel.add(save);
 		savePanel.add(new JLabel());
 		add(savePanel);
 		save.setBackground(Color.gray);
 		save.setForeground(Color.white);
-		
+
+		for(JLabel lb: labels){
+			lb.setFont(GravitySim.DIALOG_FONT);
+		}
+
 		setVisible(true);
 	}
 	

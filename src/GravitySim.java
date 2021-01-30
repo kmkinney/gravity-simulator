@@ -1,7 +1,5 @@
-/*Kevin Kinney
- *Mrs. Gallatin
- *3/23/18
- */
+//Version 2 with scaling
+
 import java.util.*;
 import javax.swing.*;
 import java.io.*;
@@ -14,11 +12,17 @@ import java.awt.event.*;
  */
 public class GravitySim extends JFrame implements ActionListener
 {
-	public static final int FRAME_WIDTH = 900;
-	public static final int FRAME_HEIGHT = 700;
+	public static final int BASE_HEIGHT = 700;
+	public static final int BASE_WIDTH = 900;
+	public static final int S_HEIGHT = (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()*.7);
+	public static final int FRAME_HEIGHT = (int)((double)S_HEIGHT * Toolkit.getDefaultToolkit().getScreenResolution()/100);
+	public static final double SCALE = (double)FRAME_HEIGHT / BASE_HEIGHT;
+	public static final int FRAME_WIDTH = (int)(BASE_WIDTH * SCALE);
+
 	public static String title = "Gravity Sim";
 	public static String[] colors = {"RED", "BLUE", "YELLOW", "GREEN", "ORANGE"};
-	
+	public static final Font DIALOG_FONT = new Font("Dialog", Font.PLAIN, (int)(12*SCALE));
+
 	private GravityComp sim;
 	private ArrayList<JButton> buttons;
 	private ArrayList<JTextField> fields;
@@ -67,6 +71,7 @@ public class GravitySim extends JFrame implements ActionListener
 		customPanel.setLayout(new GridLayout(5, 8));
 		ArrayList<JLabel> cLabels = new ArrayList<>();
 		apply = new JButton("Apply");
+		apply.setFont(DIALOG_FONT);
 		buttons.add(apply);
 		customPanel.add(apply);
 		
@@ -126,23 +131,30 @@ public class GravitySim extends JFrame implements ActionListener
 		
 		for(JLabel jl:cLabels) {
 			jl.setHorizontalAlignment(JLabel.CENTER);
+			jl.setFont(DIALOG_FONT);
 		}
 		for(JButton b:buttons){
 			b.addActionListener(this);
 			b.setBackground(Color.gray);
 			b.setForeground(Color.white);
+			b.setFont(DIALOG_FONT);
 		}
-		for(JTextField f:fields)
+		for(JTextField f:fields){
 			f.addActionListener(this);
-		for(JComboBox<String> b:colorChoosers)
+			f.setFont(DIALOG_FONT);
+		}
+		for(JComboBox<String> b:colorChoosers){
 			b.addActionListener(this);
-		
+			b.setFont(DIALOG_FONT);
+		}
 		add(controlPanel, BorderLayout.NORTH);
 		sim = new GravityComp(this);
 		add(sim, BorderLayout.CENTER);
 		add(customPanel, BorderLayout.SOUTH);
 		showCustom(false);
 		setVisible(true);
+		getContentPane().setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+		pack();
 	}
 	/**
 	 * Shows a custom input panel if show is true

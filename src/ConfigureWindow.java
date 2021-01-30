@@ -13,14 +13,16 @@ import java.util.*;
  */
 public class ConfigureWindow extends JFrame implements ItemListener, ActionListener
 {
-	public static final int WIDTH = 300;
-	public static final int HEIGHT = 300;
+	public static final int BASE_WIDTH = 300;
+	public static final int BASE_HEIGHT = 300;
+	public static final int WIDTH = (int)(BASE_WIDTH * GravitySim.SCALE);
+	public static final int HEIGHT = (int)(BASE_HEIGHT * GravitySim.SCALE);
 	
 	private GravityComp sim;
 	private GravitySim window;
 	private ButtonGroup bodySelectGroup;
 	private JPanel optionPanel;
-	private ArrayList<JRadioButton> options;
+	private LinkedList<JRadioButton> options;
 	private JButton save;
 	private JComboBox<String> scenarios;
 	
@@ -41,9 +43,11 @@ public class ConfigureWindow extends JFrame implements ItemListener, ActionListe
 		bodySelectGroup = new ButtonGroup();
 		optionPanel = new JPanel();
 		optionPanel.setLayout(new GridLayout(1, 4));
-		add(new JLabel("NUMBER OF BODIES", JLabel.CENTER));
+		JLabel numBod = new JLabel("NUMBER OF BODIES", JLabel.CENTER);
+		numBod.setFont(GravitySim.DIALOG_FONT);
+		add(numBod);
 		
-		options = new ArrayList<>();
+		options = new LinkedList<>();
 		
 		options.add(new JRadioButton("1", sim.getNumBodies()==1));
 		options.add(new JRadioButton("2", sim.getNumBodies()==2));
@@ -52,6 +56,7 @@ public class ConfigureWindow extends JFrame implements ItemListener, ActionListe
 		String s = sim.getScenario();
 		for(JRadioButton b:options)
 		{
+			b.setFont(GravitySim.DIALOG_FONT);
 			bodySelectGroup.add(b);
 			optionPanel.add(b);
 			b.addItemListener(this);
@@ -71,6 +76,7 @@ public class ConfigureWindow extends JFrame implements ItemListener, ActionListe
 		scenarios = new JComboBox<String>(options);
 		scenarios.setSelectedItem(sim.getScenario());
 		scenarios.addActionListener(this);
+		scenarios.setFont(GravitySim.DIALOG_FONT);
 		add(new JLabel());
 		add(scenarios);
 		add(new JLabel());
@@ -82,6 +88,7 @@ public class ConfigureWindow extends JFrame implements ItemListener, ActionListe
 		save.addActionListener(this);
 		save.setBackground(Color.gray);
 		save.setForeground(Color.white);
+		save.setFont(GravitySim.DIALOG_FONT);
 		savePanel.add(save);
 		savePanel.add(new JLabel());
 		add(savePanel);
