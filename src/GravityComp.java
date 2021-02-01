@@ -53,20 +53,20 @@ public class GravityComp extends JComponent
 		bodies.clear();
 		trails.clear();
 		sim.showCustom(false);
-		Body bodyOne = new Body(GravitySim.FRAME_WIDTH/2, GravitySim.FRAME_HEIGHT/2, 50, 1000, Color.yellow);				
+		Body bodyOne = new Body(GravitySim.BASE_WIDTH/2, GravitySim.BASE_HEIGHT/2, 50, 1000, Color.yellow);				
 		bodies.add(bodyOne);
 		if(numBodies>=2) {
-			Body bodyTwo = new Body(GravitySim.FRAME_WIDTH/4, GravitySim.FRAME_HEIGHT/2, 15, .1, Color.green);
+			Body bodyTwo = new Body(GravitySim.BASE_WIDTH/4, GravitySim.BASE_HEIGHT/2, 15, .1, Color.green);
 			bodies.add(bodyTwo);
 			setUCMOrbit(bodyOne, bodyTwo);
 		}
 		if(numBodies>=3) {
-			Body bodyThree = new Body(GravitySim.FRAME_WIDTH/3, GravitySim.FRAME_HEIGHT/2, 10, .1, Color.blue);
+			Body bodyThree = new Body(GravitySim.BASE_WIDTH/3, GravitySim.BASE_HEIGHT/2, 10, .1, Color.blue);
 			bodies.add(bodyThree);
 			setUCMOrbit(bodyOne, bodyThree);
 		}
 		if(numBodies>=4) {
-			Body bodyFour = new Body(GravitySim.FRAME_WIDTH/6, GravitySim.FRAME_HEIGHT/2, 5, .05, Color.orange);
+			Body bodyFour = new Body(GravitySim.BASE_WIDTH/6, GravitySim.BASE_HEIGHT/2, 5, .05, Color.orange);
 			bodies.add(bodyFour);
 			setUCMOrbit(bodyOne, bodyFour);
 		}
@@ -82,8 +82,8 @@ public class GravityComp extends JComponent
 		bodies.clear();
 		trails.clear();
 		sim.showCustom(false);
-		Body bodyOne = new Body(GravitySim.FRAME_WIDTH/3, GravitySim.FRAME_HEIGHT/2, 50, 100, Color.YELLOW);
-		Body bodyTwo = new Body(GravitySim.FRAME_WIDTH/3*2, GravitySim.FRAME_HEIGHT/2, 50, 100, Color.red);
+		Body bodyOne = new Body(GravitySim.BASE_WIDTH/3, GravitySim.BASE_HEIGHT/2, 50, 100, Color.YELLOW);
+		Body bodyTwo = new Body(GravitySim.BASE_WIDTH/3*2, GravitySim.BASE_HEIGHT/2, 50, 100, Color.red);
       	bodyOne.setInitialVelocity(0, 100);
       	bodyTwo.setInitialVelocity(0, -100);
       
@@ -104,10 +104,10 @@ public class GravityComp extends JComponent
 		bodies.clear();
 		trails.clear();
 		setFixedSun(false);
-		Body bOne = new Body(GravitySim.FRAME_WIDTH/3, GravitySim.FRAME_HEIGHT/3, 5, 30, Color.YELLOW);
-		Body bTwo = new Body(GravitySim.FRAME_WIDTH/3+300, GravitySim.FRAME_HEIGHT/3, 5, 30, Color.RED);
-		Body bThree = new Body(GravitySim.FRAME_WIDTH/3, GravitySim.FRAME_HEIGHT/3+300, 5, 30, Color.BLUE);
-		Body bFour = new Body(GravitySim.FRAME_WIDTH/3+300, GravitySim.FRAME_HEIGHT/3+300, 5, 30, Color.GREEN);
+		Body bOne = new Body(GravitySim.BASE_WIDTH/3, GravitySim.BASE_HEIGHT/3, 5, 30, Color.YELLOW);
+		Body bTwo = new Body(GravitySim.BASE_WIDTH/3+300, GravitySim.BASE_HEIGHT/3, 5, 30, Color.RED);
+		Body bThree = new Body(GravitySim.BASE_WIDTH/3, GravitySim.BASE_HEIGHT/3+300, 5, 30, Color.BLUE);
+		Body bFour = new Body(GravitySim.BASE_WIDTH/3+300, GravitySim.BASE_HEIGHT/3+300, 5, 30, Color.GREEN);
 		bodies.add(bOne);
 		bodies.add(bTwo);
 		bodies.add(bThree);
@@ -129,8 +129,8 @@ public class GravityComp extends JComponent
 		setFixedSun(false);
 		numBodies = 14;
 		
-		int h = GravitySim.FRAME_HEIGHT;
-		int w = GravitySim.FRAME_WIDTH;
+		int h = GravitySim.BASE_HEIGHT;
+		int w = GravitySim.BASE_WIDTH;
 		//P
 		Body bOne = new Body(0, 10, 10, 5, Color.pink);
 		Body bTwo = new Body(w/3, 200, 10, 20, Color.pink);

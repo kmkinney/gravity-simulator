@@ -20,12 +20,12 @@ public class Body implements Serializable
 	public Body(double xCenter, double yCenter, double r, double m, Color c)
 	{
 		group = 1;
-		x = xCenter;
-		x0 = xCenter;
-		y = yCenter;
-		y0 = yCenter;
-		mass = m;
-		radius = r;
+		x = xCenter * GravitySim.SCALE;
+		x0 = xCenter * GravitySim.SCALE;
+		y = yCenter * GravitySim.SCALE;
+		y0 = yCenter * GravitySim.SCALE;
+		mass = m * GravitySim.SCALE;
+		radius = r * GravitySim.SCALE;
 		color = c;
 		ax = 0;
 		ay = 0;
