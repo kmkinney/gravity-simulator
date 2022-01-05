@@ -10,4 +10,4 @@ run: *.class
 
 jar: *.java *.class
 	javac *.java
-	jar cmf manifest.mf GravitySim.jav *.java *.class data.dat
+	jar cmf manifest.mf GravitySim.jar *.java *.class data.dat
